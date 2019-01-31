@@ -7,9 +7,7 @@ export class ProductListPage{
 
   constructor () {
     this.inStockbutton = $('#center_column > ul > li > div > div.right-block > span > span');
-    // tslint:disable-next-line:max-line-length
-    this.addToCartButton = $('#center_column > ul > li > div > div.right-block > div.button-container >' +
-    'a.button.ajax_add_to_cart_button.btn.btn-default > span');
+    this.addToCartButton = $('.ajax_add_to_cart_button');
   }
 
   public async viewTheStock(): Promise<ProductListPage> {
