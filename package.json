@@ -30,10 +30,10 @@
   },
   "homepage": "https://github.com/manuelam20/protractor-workshop-2018#readme",
   "dependencies": {
-    "@types/node": "^10.12.18",
     "protractor": "^5.4.2"
   },
   "devDependencies": {
+    "@types/node": "^10.12.18",
     "@types/isomorphic-fetch": "0.0.34",
     "@types/jasminewd2": "^2.0.4",
     "jasmine-awesome-report": "0.0.3",

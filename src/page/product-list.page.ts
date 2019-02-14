@@ -6,7 +6,7 @@ export class ProductListPage{
   private addToCartButton: ElementFinder;
 
   constructor () {
-    this.inStockbutton = $('#center_column > ul > li > div > div.right-block > span > span');
+    this.inStockbutton = $('.available-now');
     this.addToCartButton = $('.ajax_add_to_cart_button');
   }
 

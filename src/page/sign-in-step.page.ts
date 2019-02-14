@@ -8,7 +8,7 @@ export class SigInPage{
   constructor() {
     this.emailAddressTextField = $('#email');
     this.passwordTextField =  $('#passwd');
-    this.signInButton =  $('#SubmitLogin > span');
+    this.signInButton =  $('#SubmitLogin');
   }
 
   public async signInForm(emailAddress: string, passwd: string): Promise<void> {
