@@ -24,7 +24,6 @@ describe('Buy a t-shirt', () => {
 
   it('then should be bought a t-shirt', async () => {
     await browser.get('http://automationpractice.com/');
-    await(browser.sleep(3000));
     const productListPage: ProductListPage = await menuContentPage.goToTShirtMenu();
     const productAddedModalPage: ProductAddedModalPage = (await
       (await productListPage.viewTheStock()).addTshirtToCart());
