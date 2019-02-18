@@ -21,35 +21,27 @@ describe('Given I open a purchase page', () => {
       await menuContentPage.goToTShirtMenu();
       const productAddedModalPage: ProductAddedModalPage = (await
       (await productListPage.viewTheStock()).addTshirtToCart());
-      await(browser.sleep(3000));
       await productAddedModalPage.proceedToCheckOut();
-      await(browser.sleep(3000));
       await orderSummaryPage.proceedToCheckoutClick();
-      await(browser.sleep(3000));
     });
     describe('And I need to log in to the app', () => {
       beforeAll(async () => {
         const signInPage: SigInPage = new SigInPage();
         await signInPage.signInForm('aperdomobo@gmail.com', 'WorkshopProtractor');
-        await(browser.sleep(3000));
       });
       describe('And I need to select the default address', () => {
         beforeAll(async () => {
           const addressPage: AddressStepPage = new AddressStepPage();
           const shippingPage: ShippingStepPage = new ShippingStepPage();
           await addressPage.proceedToCheckOutClick();
-          await(browser.sleep(3000));
           await shippingPage.shippingPageForm();
-          await(browser.sleep(3000));
         });
         it('then I should pay and bought the T-shirt', () => {
           beforeAll(async() => {
             const paymentPage: PaymentPage = new PaymentPage();
             const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
             await paymentPage.payBankWireSelection();
-            await(browser.sleep(3000));
             await bankPaymentPage.confirmOrderClcik();
-            await(browser.sleep(3000));
             await expect(bankPaymentPage.getOrderText())
             .toBe('Your order on My Store is complete.');
           });
