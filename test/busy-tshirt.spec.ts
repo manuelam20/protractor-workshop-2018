@@ -9,41 +9,44 @@ import { ShippingStepPage } from '../src/page/shipping-step.page';
 import { PaymentPage } from '../src/page/payment-step.page';
 import { BankPaymentPage } from '../src/page/bank-payment.page';
 
-describe('Buy a t-shirt', () => {
-  const menuContentPage: MenuContentPage = new MenuContentPage();
-  const orderSummaryPage: OrderSummaryPage = new OrderSummaryPage();
-  const signInPage: SigInPage = new SigInPage();
-  const addressPage: AddressStepPage = new AddressStepPage();
-  const shippingPage: ShippingStepPage = new ShippingStepPage();
-  const paymentPage: PaymentPage = new PaymentPage();
-  const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
-
-  beforeEach(() => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 120000;
-  });
-
-  it('then should be bought a t-shirt', async () => {
+describe('Given I open a purchase page', () => {
+  beforeAll(async () => {
     await browser.get('http://automationpractice.com/');
-    const productListPage: ProductListPage = await menuContentPage.goToTShirtMenu();
-    const productAddedModalPage: ProductAddedModalPage = (await
+  });
+  describe('When I want to buy a T-shirt and added to the cart', () => {
+    beforeAll(async () => {
+      const menuContentPage: MenuContentPage = new MenuContentPage();
+      const productListPage: ProductListPage = new ProductListPage();
+      const orderSummaryPage: OrderSummaryPage = new OrderSummaryPage();
+      await menuContentPage.goToTShirtMenu();
+      const productAddedModalPage: ProductAddedModalPage = (await
       (await productListPage.viewTheStock()).addTshirtToCart());
-    await(browser.sleep(3000));
-    await productAddedModalPage.proceedToCheckOut();
-    await(browser.sleep(3000));
-    await orderSummaryPage.proceedToCheckoutClick();
-    await(browser.sleep(3000));
-    await signInPage.signInForm('aperdomobo@gmail.com', 'WorkshopProtractor');
-    await(browser.sleep(3000));
-    await addressPage.proceedToCheckOutClick();
-    await(browser.sleep(3000));
-    await shippingPage.shippingPageForm();
-    await(browser.sleep(3000));
-    await paymentPage.payBankWireSelection();
-    await(browser.sleep(3000));
-    await bankPaymentPage.confirmOrderClcik();
-    await(browser.sleep(3000));
-
-    await expect(bankPaymentPage.getOrderText())
-      .toBe('Your order on My Store is complete.');
+      await productAddedModalPage.proceedToCheckOut();
+      await orderSummaryPage.proceedToCheckoutClick();
+    });
+    describe('And I need to log in to the app', () => {
+      beforeAll(async () => {
+        const signInPage: SigInPage = new SigInPage();
+        await signInPage.signInForm('aperdomobo@gmail.com', 'WorkshopProtractor');
+      });
+      describe('And I need to select the default address', () => {
+        beforeAll(async () => {
+          const addressPage: AddressStepPage = new AddressStepPage();
+          const shippingPage: ShippingStepPage = new ShippingStepPage();
+          await addressPage.proceedToCheckOutClick();
+          await shippingPage.shippingPageForm();
+        });
+        it('then I should pay and bought the T-shirt', () => {
+          beforeAll(async() => {
+            const paymentPage: PaymentPage = new PaymentPage();
+            const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
+            await paymentPage.payBankWireSelection();
+            await bankPaymentPage.confirmOrderClcik();
+            await expect(bankPaymentPage.getOrderText())
+            .toBe('Your order on My Store is complete.');
+          });
+        });
+      });
+    });
   });
 });

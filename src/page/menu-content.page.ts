@@ -1,5 +1,4 @@
 import { $, ElementFinder } from 'protractor';
-import { ProductListPage } from './product-list.page';
 
 export class MenuContentPage {
   private tShirtMenu: ElementFinder;
@@ -8,8 +7,7 @@ export class MenuContentPage {
     this.tShirtMenu = $('#block_top_menu > ul > li > a[title="T-shirts"]');
   }
 
-  public async goToTShirtMenu(): Promise<ProductListPage> {
+  public async goToTShirtMenu(): Promise<void> {
     await this.tShirtMenu.click();
-    return new ProductListPage();
   }
 }
