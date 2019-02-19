@@ -7,7 +7,14 @@ export const config: Config = {
   getPageTimeout: 30000,
   SELENIUM_PROMISE_MANAGER: false,
   jasmineNodeOpts: {
-    defaultTimeoutInterval: 120000
+    defaultTimeoutInterval: 120000,
+    capabilities: {
+      browserName: 'chrome',
+      chromeOptions: {
+        args: ['--disable-popup-blocking', '--no-default-browser-check', '--window-size=800,600'],
+        prefs: { credentials_enable_service: false }
+      }
+    },
   },
   onPrepare: () => {
     browser.ignoreSynchronization = true;
