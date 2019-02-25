@@ -1,16 +1,17 @@
 import { browser } from 'protractor';
 import { MenuContentPage } from '../src/page';
 import { ProductListPage } from '../src/page/product-list.page';
-import { ProductAddedModalPage } from '../src/page/product-added-modal.page';
 import { OrderSummaryPage } from '../src/page/order-summary.page';
 import { SigInPage } from '../src/page/sign-in-step.page';
 import { AddressStepPage } from '../src/page/address-step.page';
 import { ShippingStepPage } from '../src/page/shipping-step.page';
 import { PaymentPage } from '../src/page/payment-step.page';
 import { BankPaymentPage } from '../src/page/bank-payment.page';
+import { ProductAddedModalPage } from '../src/page/product-added-modal.page';
 
 describe('Given I open a purchase page', () => {
   beforeAll(async () => {
+    await browser.driver.manage().window().maximize();
     await browser.get('http://automationpractice.com/');
   });
   describe('When I want to buy a T-shirt and added to the cart', () => {
@@ -18,9 +19,10 @@ describe('Given I open a purchase page', () => {
       const menuContentPage: MenuContentPage = new MenuContentPage();
       const productListPage: ProductListPage = new ProductListPage();
       const orderSummaryPage: OrderSummaryPage = new OrderSummaryPage();
+      const productAddedModalPage: ProductAddedModalPage = new ProductAddedModalPage();
       await menuContentPage.goToTShirtMenu();
-      const productAddedModalPage: ProductAddedModalPage = (await
-      (await productListPage.viewTheStock()).addTshirtToCart());
+      await productListPage.selectProduct('Faded Short Sleeve T-shirts');
+      //  await productListPage.addTshirtToCart();
       await productAddedModalPage.proceedToCheckOut();
       await orderSummaryPage.proceedToCheckoutClick();
     });

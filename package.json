@@ -29,7 +29,8 @@
   },
   "homepage": "https://github.com/manuelam20/protractor-workshop-2018#readme",
   "dependencies": {
-    "protractor": "^5.4.2"
+    "protractor": "^5.4.2",
+    "protractor-jasmine2-screenshot-reporter": "^0.5.0"
   },
   "devDependencies": {
     "@types/isomorphic-fetch": "0.0.34",
