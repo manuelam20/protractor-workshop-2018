@@ -1,6 +1,5 @@
-import { $, ElementFinder, browser } from 'protractor';
+import { $, ElementFinder, browser, protractor } from 'protractor';
 import { OrderSummaryPage } from './order-summary.page';
-import { protractor } from 'protractor/built/ptor';
 
 export class ProductAddedModalPage{
   private proceedToCheckOutButton: ElementFinder;
