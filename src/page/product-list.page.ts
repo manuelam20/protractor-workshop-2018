@@ -24,16 +24,6 @@ export class ProductListPage{
     return new ProductAddedModalPage();
   }
 
-  /*private findByProduct (productName : string) : ElementFinder {
-    return this.products
-    .filter((item: ElementFinder) =>
-      item
-      .$('.product-name')
-      .getText()
-      .then((text: string) => text.includes(productName)))
-    .first();
-  }*/
-
   private findByProduct (productName : string) : ElementFinder {
     return this.products.filter((item: ElementFinder) => {
       return item.$('.product-name')

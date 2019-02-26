@@ -22,7 +22,6 @@ describe('Given I open a purchase page', () => {
       const productAddedModalPage: ProductAddedModalPage = new ProductAddedModalPage();
       await menuContentPage.goToTShirtMenu();
       await productListPage.selectProduct('Faded Short Sleeve T-shirts');
-      //  await productListPage.addTshirtToCart();
       await productAddedModalPage.proceedToCheckOut();
       await orderSummaryPage.proceedToCheckoutClick();
     });
